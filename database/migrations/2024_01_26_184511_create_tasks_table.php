@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->string('name', 30);
+            $table->text('description');
+            $table->enum('priority', ['low', 'medium', 'high']);
+            $table->dateTime('due_date');
+            $table->string('file_path')->nullable();
             $table->timestamps();
+
+            $table->foreignId('user_id')->constrained();
         });
     }
 
